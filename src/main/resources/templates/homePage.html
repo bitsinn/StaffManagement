@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<div>
+    <h1>Staff Management</h1>
+</div>
+<nav>
+    <ul>
+        <form th:action="@{/}" th:object="${employee}" method="post">
+            <div>
+                <label>Project ID</label>
+                <input type="number" min="0" th:field="*{projectId}">
+                <div th:if="${#fields.hasErrors('projectId')}">
+                    <span th:each="error : ${#fields.errors('projectId')}" th:texh="${error}">Can not be zero!</span>
+                </div>
+            </div>
+            <div>
+                <label>Joined project at</label>
+                <input type="datetime-local" th:field="*{projectStartedAt}">
+                <div th:if="${#fields.hasErrors('projectStartedAt')}">
+                    <span th:each="error : ${#fields.errors('projectStartedAt')}" th:texh="${error}">Can not be null!</span>
+                </div>
+            </div>
+            <div>
+                <label>Finished project at</label>
+                <input type="datetime-local" th:field="*{projectFinishedAt}">
+            </div>
+            <div>
+                <input type="submit" value="Assign project">
+            </div>
+        </form>
+    </ul>
+</nav>
+<div>
+    <ul>
+        <li th:each="emp : ${employees}">
+            <span th:text="${emp.id}">ID</span>
+            <a th:href="@{/delete/{id} (id = ${emp.id})}">Delete</a>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>
