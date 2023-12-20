@@ -2,19 +2,14 @@ package com.staff.staff.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-
-import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "employees")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
     @Min(value = 1)
     private int projectId;
@@ -27,7 +22,8 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int projectId, LocalDateTime projectStartedAt, LocalDateTime projectFinishedAt, Long projectDuration) {
+    public Employee(Long id, int projectId, LocalDateTime projectStartedAt, LocalDateTime projectFinishedAt, Long projectDuration) {
+        this.id = id;
         this.projectId = projectId;
         this.projectStartedAt = projectStartedAt;
         this.projectFinishedAt = projectFinishedAt;

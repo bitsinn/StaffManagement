@@ -12,23 +12,43 @@
     <ul>
         <form th:action="@{/}" th:object="${employee}" method="post">
             <div>
+                <label>Employee ID</label>
+                <div>
+                    <input type="number" min="0" th:field="*{id}">
+                    <div th:if="${#fields.hasErrors('id')}">
+                        <span th:each="error : ${#fields.errors('projectId')}" th:texh="${error}">Can not be null!</span>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div>
                 <label>Project ID</label>
-                <input type="number" min="0" th:field="*{projectId}">
-                <div th:if="${#fields.hasErrors('projectId')}">
-                    <span th:each="error : ${#fields.errors('projectId')}" th:texh="${error}">Can not be zero!</span>
+                <div>
+                    <input type="number" min="0" th:field="*{projectId}">
+                    <div th:if="${#fields.hasErrors('projectId')}">
+                        <span th:each="error : ${#fields.errors('projectId')}" th:texh="${error}">Can not be zero!</span>
+                    </div>
                 </div>
             </div>
+            <p></p>
             <div>
-                <label>Joined project at</label>
-                <input type="datetime-local" th:field="*{projectStartedAt}">
-                <div th:if="${#fields.hasErrors('projectStartedAt')}">
-                    <span th:each="error : ${#fields.errors('projectStartedAt')}" th:texh="${error}">Can not be null!</span>
+                <label>Joined project</label>
+                <div>
+                    <input type="datetime-local" th:field="*{projectStartedAt}">
+                    <div th:if="${#fields.hasErrors('projectStartedAt')}">
+                        <span th:each="error : ${#fields.errors('projectStartedAt')}" th:texh="${error}">Can not be null!</span>
+                    </div>
                 </div>
             </div>
+            <p></p>
             <div>
-                <label>Finished project at</label>
-                <input type="datetime-local" th:field="*{projectFinishedAt}">
+                <label>Left project</label>
+                <div>
+                    <input type="datetime-local" th:field="*{projectFinishedAt}">
+                    <p>If you do not enter "left project" it will automatically make it to today!</p>
+                </div>
             </div>
+            <p></p>
             <div>
                 <input type="submit" value="Assign project">
             </div>
@@ -37,12 +57,36 @@
 </nav>
 <div>
     <ul>
-        <li th:each="emp : ${employees}">
-            <span th:text="${emp.id}">ID</span>
-            <a th:href="@{/delete/{id} (id = ${emp.id})}">Delete</a>
-        </li>
+        <table border="1px" style="width: 1000px">
+            <tr>
+                <th style="width: 200px; text-align: center;">Employee ID</th>
+                <th style="width: 200px; text-align: center;">Project ID</th>
+                <th style="width: 200px; text-align: center;">Joined project at</th>
+                <th style="width: 200px; text-align: center;">Left project at</th>
+                <th style="width: 200px; text-align: center;">Days worked on project</th>
+            </tr>
+            <tr style="text-align: center;" th:each="emp : ${employees}">
+                <td>
+                    <span th:text="${emp.id}"></span>
+                </td>
+                <td>
+                    <span th:text="${emp.projectId}"></span>
+                </td>
+                <td>
+                    <span th:text="${emp.projectStartedAt}"></span>
+                </td>
+                <td>
+                    <span th:text="${emp.projectFinishedAt}"></span>
+                </td>
+                <td>
+                    <span th:text="${emp.projectDuration}"></span>
+                </td>
+                <td>
+                    <a th:href="@{/delete/{id} (id = ${emp.id})}">Delete</a>
+                </td>
+            </tr>
+        </table>
     </ul>
-
 </div>
 </body>
 </html>
