@@ -10,13 +10,13 @@
 </div>
 <nav>
     <ul>
-        <form th:action="@{/}" th:object="${employee}" method="post">
+        <form th:action="@{/}" th:object="${staff}" method="post">
             <div>
                 <label>Employee ID</label>
                 <div>
-                    <input type="number" min="0" th:field="*{id}">
-                    <div th:if="${#fields.hasErrors('id')}">
-                        <span th:each="error : ${#fields.errors('projectId')}" th:texh="${error}">Can not be null!</span>
+                    <input type="number" min="0" th:field="*{employeeId}">
+                    <div th:if="${#fields.hasErrors('employeeId')}">
+                        <span th:each="error : ${#fields.errors('employeeId')}" th:texh="${error}">{error}!</span>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <div>
                     <input type="number" min="0" th:field="*{projectId}">
                     <div th:if="${#fields.hasErrors('projectId')}">
-                        <span th:each="error : ${#fields.errors('projectId')}" th:texh="${error}">Can not be zero!</span>
+                        <span th:each="error : ${#fields.errors('projectId')}" th:text="${error}">{error}!</span>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div>
                     <input type="datetime-local" th:field="*{projectStartedAt}">
                     <div th:if="${#fields.hasErrors('projectStartedAt')}">
-                        <span th:each="error : ${#fields.errors('projectStartedAt')}" th:texh="${error}">Can not be null!</span>
+                        <span th:each="error : ${#fields.errors('projectStartedAt')}" th:texh="${error}">{error}!</span>
                     </div>
                 </div>
             </div>
@@ -65,27 +65,28 @@
                 <th style="width: 200px; text-align: center;">Left project at</th>
                 <th style="width: 200px; text-align: center;">Days worked on project</th>
             </tr>
-            <tr style="text-align: center;" th:each="emp : ${employees}">
+            <tr style="text-align: center;" th:each="st : ${Staff}">
                 <td>
-                    <span th:text="${emp.id}"></span>
+                    <span th:text="${st.employeeId}"></span>
                 </td>
                 <td>
-                    <span th:text="${emp.projectId}"></span>
+                    <span th:text="${st.projectId}"></span>
                 </td>
                 <td>
-                    <span th:text="${emp.projectStartedAt}"></span>
+                    <span th:text="${st.projectStartedAt}"></span>
                 </td>
                 <td>
-                    <span th:text="${emp.projectFinishedAt}"></span>
+                    <span th:text="${st.projectFinishedAt}"></span>
                 </td>
                 <td>
-                    <span th:text="${emp.projectDuration}"></span>
+                    <span th:text="${st.projectDuration}"></span>
                 </td>
                 <td>
-                    <a th:href="@{/delete/{id} (id = ${emp.id})}">Delete</a>
+                    <a th:href="@{/delete/{id} (id = ${st.id})}">Delete</a>
                 </td>
             </tr>
         </table>
+        <a th:href="@{/project}">Filter by project</a>
     </ul>
 </div>
 </body>

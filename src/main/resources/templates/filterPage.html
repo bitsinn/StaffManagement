@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a th:href="@{/}">Home Page</a>
+    <p></p>
+    <table border="1px" style="width: 600px">
+        <tr>
+            <th style="width: 200px; text-align: center;">Employee ID</th>
+            <th style="width: 200px; text-align: center;">Project ID</th>
+            <th style="width: 200px; text-align: center;">Days worked on project</th>
+        </tr>
+        <tr style="text-align: center;" th:each="emp : ${staff}">
+            <td>
+                <span th:text="${emp.employeeId}"></span>
+            </td>
+            <td>
+                <span th:text="${emp.projectId}"></span>
+            </td>
+            <td>
+                <span th:text="${emp.projectDuration}"></span>
+            </td>
+        </tr>
+    </table>
+<p th:if="${#lists.isEmpty(staff)}">No employees worked together on the same project.</p>
+
+</body>
+</html>

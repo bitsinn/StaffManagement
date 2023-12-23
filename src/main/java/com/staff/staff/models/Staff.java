@@ -3,27 +3,30 @@ package com.staff.staff.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "employees")
-public class Employee {
+@Table(name = "staff")
+public class Staff {
     @Id
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Min(value = 1)
-    private int projectId;
-
+    @Min(value = 1, message = "Must be grater then 0")
+    private Long employeeId;
+    @Min(value = 1, message = "Must be grater then 0")
+    private Long projectId;
     @NotNull(message = "This field can not be null")
     private LocalDateTime projectStartedAt;
     private LocalDateTime projectFinishedAt;
     private Long projectDuration;
 
-    public Employee() {
+    public Staff() {
     }
 
-    public Employee(Long id, int projectId, LocalDateTime projectStartedAt, LocalDateTime projectFinishedAt, Long projectDuration) {
+    public Staff(Long id, Long employeeId, Long projectId, LocalDateTime projectStartedAt, LocalDateTime projectFinishedAt, Long projectDuration) {
         this.id = id;
+        this.employeeId = employeeId;
         this.projectId = projectId;
         this.projectStartedAt = projectStartedAt;
         this.projectFinishedAt = projectFinishedAt;
@@ -38,11 +41,19 @@ public class Employee {
         this.id = id;
     }
 
-    public int getProjectId() {
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Long getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(int projectId) {
+    public void setProjectId(Long projectId) {
         this.projectId = projectId;
     }
 
