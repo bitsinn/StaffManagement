@@ -13,8 +13,10 @@ public class Staff {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Min(value = 1, message = "Must be grater then 0")
+    @NotNull(message = "This field can not be null")
     private Long employeeId;
     @Min(value = 1, message = "Must be grater then 0")
+    @NotNull(message = "This field can not be null")
     private Long projectId;
     @NotNull(message = "This field can not be null")
     private LocalDateTime projectStartedAt;

@@ -14,15 +14,9 @@
             <th style="width: 200px; text-align: center;">Days worked on project</th>
         </tr>
         <tr style="text-align: center;" th:each="emp : ${staff}">
-            <td>
-                <span th:text="${emp.employeeId}"></span>
-            </td>
-            <td>
-                <span th:text="${emp.projectId}"></span>
-            </td>
-            <td>
-                <span th:text="${emp.projectDuration}"></span>
-            </td>
+            <td th:text="${emp.employeeId}"/>
+            <td th:text="${emp.projectId}"/>
+            <td th:text="${emp.projectDuration}"/>
         </tr>
     </table>
 <p th:if="${#lists.isEmpty(staff)}">No employees worked together on the same project.</p>
