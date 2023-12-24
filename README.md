@@ -1,4 +1,4 @@
-# Staff management application
+# Staff management 
 
 ## This project is about assigning projects to employees. The target is to get the employees who worked together on the same project and the time that they worked together.
 
