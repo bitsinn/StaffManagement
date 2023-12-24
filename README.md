@@ -8,43 +8,34 @@
 
 ### When you start the application and everything is loaded you have to go in you browser and enter localhost with port 8081. This will lead you to the "Home page" of the application. When you are on the "Home page" there will be some fields and buttons. On the fields you have to type the employee identity number, project identity number, when they started the project and when they finished doing it. There is a button "Assign project" this button will assign project to employee but you before that you had to enter the values in the field before. When you assign the project in the table below the button will show the employee.
 #### EXAMPLE:
-
-<form th:action="@{/}" th:object="${staff}" method="post">
+<nav>
+    <ul>
+        <form>
             <div>
                 <label>Employee ID</label>
                 <div>
-                    <input type="number" min="0" th:field="*{employeeId}">
-                    <div th:if="${#fields.hasErrors('employeeId')}">
-                        <span th:each="error : ${#fields.errors('employeeId')}" th:text="${error}"></span>
-                    </div>
+                    <input type="number">
                 </div>
             </div>
             <p></p>
             <div>
                 <label>Project ID</label>
                 <div>
-                    <input type="number" min="0" th:field="*{projectId}">
-                    <div th:if="${#fields.hasErrors('projectId')}">
-                        <span th:each="error : ${#fields.errors('projectId')}" th:text="${error}"></span>
-                    </div>
+                    <input type="number">
                 </div>
             </div>
             <p></p>
             <div>
                 <label>Joined project</label>
                 <div>
-                    <input type="datetime-local" th:field="*{projectStartedAt}">
-                    <div th:if="${#fields.hasErrors('projectStartedAt')}">
-                        <span th:each="error : ${#fields.errors('projectStartedAt')}" th:text="${error}"></span>
-                    </div>
+                    <input type="datetime-local">
                 </div>
             </div>
             <p></p>
             <div>
                 <label>Left project</label>
                 <div>
-                    <input type="datetime-local" th:field="*{projectFinishedAt}">
-                    <p>If you do not enter "left project" it will automatically make it to today!</p>
+                    <input type="datetime-local">
                 </div>
             </div>
             <p></p>
@@ -64,28 +55,28 @@
                 <th style="width: 200px; text-align: center;">Left project at</th>
                 <th style="width: 200px; text-align: center;">Days worked on project</th>
             </tr>
-            <tr style="text-align: center;" th:each="st : ${Staff}">
+            <tr style="text-align: center;">
                 <td>
-                    <span th:text="${st.employeeId}"></span>
+                    <span></span>
                 </td>
                 <td>
-                    <span th:text="${st.projectId}"></span>
+                    <span></span>
                 </td>
                 <td>
-                    <span th:text="${st.projectStartedAt}"></span>
+                    <span></span>
                 </td>
                 <td>
-                    <span th:text="${st.projectFinishedAt}"></span>
+                    <span></span>
                 </td>
                 <td>
-                    <span th:text="${st.projectDuration}"></span>
+                    <span></span>
                 </td>
                 <td>
-                    <a th:href="@{/delete/{id} (id = ${st.id})}">Delete</a>
+                    <a>Delete</a>
                 </td>
             </tr>
         </table>
-        <a th:href="@{/project}">Filter by project</a>
+        <a>Filter by project</a>
     </ul>
 </div>
 
